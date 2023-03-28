@@ -1,4 +1,10 @@
 terraform {
+  backend "azurerm" {
+    resource_group_name  = "ahk-states"
+    storage_account_name = "ahkstf"
+    container_name       = "tfstate"
+    key                  = "tfstate.tfstate"
+  }
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
