@@ -18,12 +18,12 @@ provider "azurerm" {
 }
 
 resource "azurerm_resource_group" "resource_group" {
-  name     = "ahk-github"
+  name     = "ahk-github-onlab"
   location = "West Europe"
 }
 
 resource "azurerm_storage_account" "storage" {
-  name                     = "ahkgithubstoragetf"
+  name                     = "ahkgithubstorageonlab"
   resource_group_name      = azurerm_resource_group.resource_group.name
   location                 = azurerm_resource_group.resource_group.location
   account_tier             = "Standard"
@@ -31,7 +31,7 @@ resource "azurerm_storage_account" "storage" {
 }
 
 resource "azurerm_service_plan" "service_plan" {
-  name                = "ahk-github-app-service-plan"
+  name                = "ahk-github-app-service-plan-onlab"
   resource_group_name = azurerm_resource_group.resource_group.name
   location            = azurerm_resource_group.resource_group.location
   os_type             = "Windows"
@@ -39,7 +39,7 @@ resource "azurerm_service_plan" "service_plan" {
 }
 
 resource "azurerm_windows_function_app" "function_app" {
-  name                = "ahk-github-function-app"
+  name                = "ahk-github-function-app-onlab"
   location            = azurerm_resource_group.resource_group.location
   resource_group_name = azurerm_resource_group.resource_group.name
 
