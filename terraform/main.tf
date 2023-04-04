@@ -24,6 +24,9 @@ terraform {
 provider "azurerm" {
   features {}
 }
+provider "github" {
+  organization = "ahk-github-automation-onlab"
+}
 
 resource "azurerm_resource_group" "resource_group" {
   name     = "ahk-github-onlab"
@@ -66,6 +69,6 @@ data "github_repository" "repository" {
 }
 
 resource "github_app_installation_repository" "github_app" {
-  repository      = "${data.github_repository.repository.name}"
+  repository      = data.github_repository.repository.name
   installation_id = random_string.random_id.result
 }
