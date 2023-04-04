@@ -1,7 +1,7 @@
 terraform {
   backend "azurerm" {
-    resource_group_name  = "ahk-states"
-    storage_account_name = "ahkstf"
+    resource_group_name  = "tfstates"
+    storage_account_name = "ahktfstate"
     container_name       = "tfstate"
     key                  = "tfstate.tfstate"
   }
