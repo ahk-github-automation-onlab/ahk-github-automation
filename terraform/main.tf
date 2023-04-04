@@ -10,6 +10,14 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "=3.0.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "=3.4.3"
+    }
+    github = {
+      source  = "integrations/github"
+      version = "=5.19.0"
+    }
   }
 }
 
@@ -51,4 +59,13 @@ resource "azurerm_windows_function_app" "function_app" {
 
 
   site_config {}
+}
+
+data "github_repository" "repository" {
+  full_name = "ahk-github-automation-onlab/ahk-github-automation"
+}
+
+resource "github_app_installation_repository" "github_app" {
+  repository      = data.github_repository.repository.name
+  installation_id = random_string.random_id.result
 }
